@@ -1,7 +1,7 @@
 import React from 'react'
 export default function Navbar() {
   return (
-    <nav class="navbar">
+    <nav className="navbar">
       <div className='logo-section'>
         <i className='bi-shop'></i>
         <p>PETSFORYOU</p>

@@ -101,7 +101,7 @@ export default function Footer() {
         <span>|</span>
         <a href="/term">FAQs</a>
       </div>
-      <div class="bottom-footer">
+      <div className="bottom-footer">
           <p>© PetsForYou. All Rights Reserved. | Designed by <a href="https://teamdiversity.web.app/" rel="noreferrer" target="_blank">Team Diversity</a></p>
       </div>
     </div>
