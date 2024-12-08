@@ -38,7 +38,7 @@ function Pet() {
       >
         <TileLayer
           attribution="stadia-maps"
-          url="https://tile.openstreetmap.bzh/ca/{z}/{x}/{y}.png"
+          url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
         />
 
         <Cluster
