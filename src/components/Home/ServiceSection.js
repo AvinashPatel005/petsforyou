@@ -1,5 +1,5 @@
 import React from 'react'
-import petHouse from '../img/pet-house.png'
+import petHouse from '../../img/pet-house.png'
 export default function ServiceSection() {
   return (
     

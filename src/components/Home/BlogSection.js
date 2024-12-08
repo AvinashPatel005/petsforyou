@@ -1,7 +1,7 @@
 import React from 'react'
-import blog1 from '../img/blog1.jpg'
-import blog2 from '../img/blog2.jpg'
-import blog3 from '../img/blog3.jpg'
+import blog1 from '../../img/blog1.jpg'
+import blog2 from '../../img/blog2.jpg'
+import blog3 from '../../img/blog3.jpg'
 export default function BlogSection() {
   return (
     <section className="blog-section">

@@ -55,6 +55,11 @@ section {
 .primary-button:hover {
   background-color: #555;
 }
+.horizontal-divider{
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+}
 
 /* Header */
 .top-info-bar {
@@ -97,7 +102,7 @@ section {
 .navbar {
   position: sticky;
   top: -1px;
-  z-index: 2;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   height: 70px;
@@ -155,14 +160,13 @@ section {
   border-top: 4px solid var(--primary);
 }
 
-.nav-contact-btn {
-  background-color: var(--primary);
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding-left: 30px;
-  padding-right: 15px;
-  color: aliceblue;
+.user-icon{
+  font-size: 1.4rem;
+  margin:10px;
+}
+.user-icon:hover{
+  color: var(--primary);
+  cursor: pointer;
 }
 
 /* Footer */
@@ -357,7 +361,6 @@ section {
   align-items: center;
   margin: auto;
   height: 400px;
-  flex-wrap: wrap;
 }
 
 
@@ -374,7 +377,7 @@ section {
 
 .about-image {
   height: 100%;
-  width: 500px;
+  width: 45%;
   object-fit: cover;
 
 }
@@ -642,14 +645,14 @@ section {
   vertical-align: top;
 }
 
-ul {
+.pricing-card ul {
   list-style: none;
   padding: 0;
   margin: 20px 0;
   text-align: left;
 }
 
-ul li {
+.pricing-card ul li {
   font-size: 14px;
   margin: 10px 0;
   display: flex;
@@ -657,12 +660,12 @@ ul li {
   color: #555;
 }
 
-ul li span {
+.pricing-card ul li span {
   color: #7db63e;
   font-size: 18px;
 }
 
-ul li span.red {
+.pricing-card ul li span.red {
   color: #e74c3c;
 }
 
@@ -926,4 +929,168 @@ ul li span.red {
   height: 100%;
   width: 100%;
   border: none;
+}
+
+
+
+/* Pets */
+
+.pet-container{
+  position: relative;
+  height: calc(100vh - 70px);
+}
+
+.pet-map{
+  width: 100%;
+  height: 100%;
+}
+.map-panel{
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+}
+.map-info{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid #dbd8d8;
+  height: calc(100% - 30px);
+  margin: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow: hidden;
+  padding-bottom: 10px;
+}
+
+.map-info-hint{
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+}
+.location-btn{
+  position: absolute;
+  bottom: 20px;
+  left:  10px;
+  z-index: 1000;
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.pet-search{
+  display: flex;
+  padding: 10px;
+  border: 1px solid #dbd8d8;
+  border-radius: 40px;
+  margin: 10px;
+}
+.pet-search input{
+  border: none;
+  outline: none;
+  width: 100%;
+  padding-left: 10px;
+}
+.pet-search:focus-within{
+  border: 1px solid #ec5555;
+}
+
+
+.petshop-detail-card {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid #dbd8d8;
+  height: calc(100% - 30px);
+  position: relative;
+  margin: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow: hidden;
+  padding-bottom: 10px;
+
+}
+.detail-close-btn{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  line-height: 30px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.775);
+}
+.detail-close-btn:hover{
+  color: rgb(255, 255, 255);
+}
+.petshop-detail-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.petshop-card-content {
+  padding: 16px;
+}
+.petshop-card-content h2 {
+  font-size: 1.5em;
+  margin: 0;
+  color: #333;
+}
+.petshop-card-content p {
+  margin: 8px 0;
+  color: #666;
+}
+.petshop-card-content .petshop-card-contact {
+  margin-top: 16px;
+}
+.petshop-card-content .petshop-card-contact a {
+  text-decoration: none;
+  color: #007bff;
+}
+.petshop-card-features {
+  margin-top: 16px;
+  list-style: none;
+  padding: 0;
+}
+.petshop-card-features li {
+  margin: 4px 0;
+  color: #555;
+}
+
+
+
+
+
+.marker-cluster{
+  background-color:greenyellow;
+  text-align: center;
+}
+.marker-cluster p {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+.map-info ul{
+  list-style: none;
+  overflow-y: scroll;
+}
+
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

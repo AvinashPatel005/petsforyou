@@ -1,5 +1,5 @@
 import React from 'react'
-import productImg from '../img/product-3.png'
+import productImg from '../../img/product-3.png'
 export default function ProductSection() {
   return (
     <section className="products">

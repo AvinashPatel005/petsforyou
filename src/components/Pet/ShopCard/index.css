@@ -1,0 +1,55 @@
+.petshop-info{
+    margin: 4px 0px;
+    margin-left: 4px;
+    display: flex;
+    flex-direction: column;
+    max-width: 250px;
+    gap: 4px
+  }
+  .petshop-card{
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  .petshop-card:hover{
+    background-color: #f0f0f0;
+  }
+  .petshop-logo{
+    height: 60px;
+    margin-right: 10px;
+  }
+  .petshop-address{
+    font-size: 14px;
+  }
+  .rating-card, .service-card{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: small;
+    flex-wrap: wrap;
+  }
+  .service-cyl{
+    font-size: 10px;
+    text-transform: capitalize;
+    background-color: rgb(80, 152, 235);
+    border-radius: 10px;
+    padding: 2px 10px;
+  }
+
+  .contact-card{
+    display: flex;
+    align-items: center;
+    gap:4px
+  }
+  .contact-btn{
+    border: 1px solid rgb(80, 152, 235);
+    border-radius: 4px;
+    padding: 2px 4px;
+
+  }
+  .contact-btn:hover{
+    background-color: rgb(80, 152, 235);
+    cursor: pointer;
+  }

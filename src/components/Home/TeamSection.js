@@ -1,5 +1,5 @@
 import React from 'react'
-import dp from '../img/team-1.jpg'
+import dp from '../../img/team-1.jpg'
 export default function TeamSection() {
   return (
     <section className="team-section">
