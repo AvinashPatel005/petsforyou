@@ -7,7 +7,6 @@ function ShopCard({
   ratings: { average, total_reviews },
   location,
   hours,
-  services,
   contact,
   onClick
 }) {
@@ -33,21 +32,16 @@ function ShopCard({
         <p className="petshop-address">{Object.values(hours)[day]}</p>
         <div className="contact-card">
           {Object.keys(contact).map((key, index) => (
-            <i onClick={(e)=>{
+            <i key={index} onClick={(e)=>{
                 e.stopPropagation()
                 copyToClipboard(contact[key])
             }} className={`bi bi-${iconMap[key]} contact-btn`}></i>
           ))}
         </div>
-        <div className="service-card">
-          {services.map((service) => (
-            <span className="service-cyl">{service}</span>
-          ))}
-        </div>
       </div>
       <img
         className="petshop-logo"
-        src="https://icons-for-free.com/iff/png/256/market+open+shop+shopping+store+icon-1320184216006471806.png"
+        src="https://media.istockphoto.com/id/1355290974/photo/dog-near-different-variation-of-goods-for-animals.jpg?s=612x612&w=0&k=20&c=mL_5zyUinqzo32fKV_0lb0ycD8NnvvlsKCBg51CbO2Q="
         alt=""
       />
     </div>

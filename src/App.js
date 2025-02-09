@@ -82,7 +82,7 @@ function App() {
               </>
             }
           />
-          <Route path="/pet" element={<Pet />} />
+          <Route path="/pet" element={<Pet/>} />
         </Routes>
       </BrowserRouter>
       {/* <Header/> */}
