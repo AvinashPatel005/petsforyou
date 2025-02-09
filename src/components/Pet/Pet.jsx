@@ -134,7 +134,7 @@ function Pet() {
           </div>
         </div>
         :isDetails&&cataloge? <div class="petshop-detail-card" key={setDetails.id}>
-          <PetCataloge closeCataloge={closeCataloges} />
+          <PetCataloge closeCataloge={closeCataloge} />
         </div> : null
         }
 
