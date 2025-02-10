@@ -15,7 +15,7 @@
   height: 100%;
   z-index: 1000;
   display: flex;
-  
+  user-select: none;
 }
 .map-info{
   display: flex;
@@ -115,8 +115,27 @@
   height: 200px;
   object-fit: cover;
 }
+
+.review-container{
+  margin-top: 10px;
+}
+.review-container .review-box{
+
+  border: 1px solid rgba(81, 81, 81, 0.119);
+  margin: 1px;
+  padding: 4px;
+}
+.review-box i{
+  font-size: 12px;
+}
+.review-box .review-date{
+  font-size: 12px !important;
+  text-align: end;
+}
 .petshop-card-content {
   padding: 16px;
+  height: calc(100% - 20px);
+  overflow: scroll;
 }
 .petshop-card-content h2 {
   font-size: 1.5em;
@@ -129,6 +148,12 @@
 }
 .petshop-card-content .petshop-card-contact {
   margin-top: 16px;
+  user-select:text
+
+}
+.petshop-card-content .petshop-card-contact p{
+  font-size: 0.9rem;
+  margin: 0;
 }
 .petshop-card-content .petshop-card-contact a {
   text-decoration: none;
@@ -176,7 +201,10 @@
   color: #666;
   margin: 0;
 }
-
+.petcard-desc{
+  font-size: 0.8rem !important;
+  font-weight: lighter;
+}
 
 ::-webkit-scrollbar {
   width: 4px;
@@ -206,6 +234,7 @@
     align-items: center;
     padding: 10px;
   }
+
   .petshop-card.selected{
     background-color: #f0f0f0;
   }
@@ -307,11 +336,16 @@
 }
 
 .pet-details {
-  margin-top: 10px;
-  padding-top: 10px;
   border-top: 1px solid #eee;
 }
-
+.pet-card-header h3{
+  color: black;
+  font-size: 1.2rem;
+}
+.pet-card-header p{
+  font-size: 0.9rem;
+  margin: 0;
+}
 .pet-images {
   display: flex;
   gap: 10px;
