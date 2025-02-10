@@ -1,169 +1,61 @@
 import React, { useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import Cluster from "react-leaflet-cluster";
-import { divIcon, Icon } from "leaflet";
-import petShops from "../../data";
-import ShopCard from "./ShopCard";
-import Divider from "../Divider";
+import PetMap from "./PetMap";
+import PetShopDetails from "./PetShopDetails";
 import PetCataloge from "./PetCataloge";
+import MapPanel from "./MapPanel";
+import petShops from "../../data"
+import "./Pet.css";
+
 function Pet() {
   const [isDetails, setIsDetails] = useState(false);
-  const [details,setDetails] = useState(null);
+  const [details, setDetails] = useState(null);
   const [cataloge, setCataloge] = useState(false);
+  const [map, setMap] = useState(null);
+
   const offset = 0.01;
   const currentLocation = [20.298059, 85.8248];
   const offsetCenter = [currentLocation[0], currentLocation[1] + offset];
-  const [map, setMap] = useState(null);
-  const IconCreateFunction = (cluster) => {
-    return divIcon({
-      html: `<p>${cluster.getChildCount()}</p>`,
-      className: "marker-cluster",
-      iconSize: [36, 36],
-    });
-  };
-  const onClick = (center = currentLocation, level,id) => {
+
+  const onClick = (center = currentLocation, level, id) => {
     map.setView([center[0], center[1] + offset], level);
     if (id) {
       setCataloge(false);
       setIsDetails(true);
-      setDetails(petShops[id-1])
+      setDetails(petShops.find((shop) => shop.id === id));
     }
   };
+
   const closeDetails = () => {
     setIsDetails(false);
     setDetails(null);
   };
-  const closeCataloge = () => {
-    setCataloge(false);
-    };
+
+  const openCataloge = () => setCataloge(true);
+  const closeCataloge = () => setCataloge(false);
+
   return (
     <div className="pet-container">
-      <MapContainer
-        className="pet-map"
-        center={offsetCenter}
-        zoom={14}
-        ref={setMap}
-      >
-        <TileLayer
-          attribution="stadia-maps"
-          url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
-        />
-
-        <Cluster
-          maxClusterRadius={30}
-          chunkedLoading
-          iconCreateFunction={IconCreateFunction}
-        >
-          {petShops.map((petShelter, index) => (
-            <Marker
-              key={index}
-              position={[
-                petShelter.location.latitude,
-                petShelter.location.longitude,
-              ]}
-              eventHandlers={{
-                click: (e) => onClick([petShelter.location.latitude,petShelter.location.longitude],16,petShelter.id)
-              }}
-              icon={
-                new Icon({
-                  iconUrl:
-                    "https://media.istockphoto.com/id/1355290974/photo/dog-near-different-variation-of-goods-for-animals.jpg?s=612x612&w=0&k=20&c=mL_5zyUinqzo32fKV_0lb0ycD8NnvvlsKCBg51CbO2Q=",
-                  iconSize: details&&details.id==petShelter.id?[60,60] :[36, 36],
-                  borderRadius:"50%",
-                  className: details&&details.id==petShelter.id?"petshop-marker selected" : "petshop-marker",
-                })
-              }
-            >
-            </Marker>
-          ))}
-        </Cluster>
-        <Marker
-          position={currentLocation}
-          icon={
-            new Icon({
-              iconUrl: require("../../img/gps.png"),
-              iconSize: [60, 60],
-            })
-          }
-          zIndexOffset={100}
-        ></Marker>
-      </MapContainer>
+      <PetMap
+        petShops={petShops}
+        onClick={onClick}
+        currentLocation={currentLocation}
+        offsetCenter={offsetCenter}
+        details={details}
+        setMap={setMap}
+      />
       <div className="map-panel">
-        {
-            isDetails&&!cataloge?
-            <div class="petshop-detail-card" key={setDetails.id}>
-          <img
-            src="https://media.istockphoto.com/id/1355290974/photo/dog-near-different-variation-of-goods-for-animals.jpg?s=612x612&w=0&k=20&c=mL_5zyUinqzo32fKV_0lb0ycD8NnvvlsKCBg51CbO2Q="
-            alt={details.name}
+        {isDetails && !cataloge && (
+          <PetShopDetails
+            details={details}
+            closeDetails={closeDetails}
+            openCataloge={openCataloge}
           />
-          <div class="petshop-card-content">
-            <i
-              class="bi bi-x-circle-fill detail-close-btn"
-              onClick={closeDetails}
-            ></i>
-            <h2>{details.name}</h2>
-            <p>
-              <strong>Address:</strong> {details.location.address}, {details.location.city}, {details.location.state}, {details.location.postal_code}
-            </p>
-            <p>
-              <strong>Hours:</strong>
-              <p className="petshop-hours">
-                {
-                  Object.keys(details.hours).map((key,index)=>(
-                    <p key={index}>{key.charAt(0).toUpperCase()+key.slice(1)}: {details.hours[key]}</p>
-                  ))
-                }
-              </p>
-            </p>
-            <div class="petshop-card-contact">
-              <p>
-                <strong>Contact:</strong>
-              </p>
-              <p>Phone: {details.contact.phone}</p>
-              <p>
-                Email:{" "}
-                <a href={`mailto:${details.contact.email}`}>{details.contact.email}</a>
-              </p>
-              <p>
-                <a href={details.contact.website} rel="noreferrer" target="_blank">
-                  Visit Website
-                </a>
-              </p>
-              <i className="bi bi-arrow-right-circle-fill cataloge-open-btn" onClick={()=>setCataloge(true)}></i>
-            </div>
-          </div>
-        </div>
-        :isDetails&&cataloge? <div class="petshop-detail-card" key={setDetails.id}>
-          <PetCataloge closeCataloge={closeCataloge} />
-        </div> : null
-        }
-
-        <div className="map-info">
-          <div className="pet-search">
-            <i class="bi bi-search"></i>
-            <input type="text" placeholder="Search Pets, Shelters, etc" />
-          </div>
-          <p className="map-info-hint">
-            <i class="bi bi-dot"></i>
-            <i class="bi bi-dot"></i>
-            <i class="bi bi-dot"></i>
-            Nearby
-            <i class="bi bi-dot"></i>
-            <i class="bi bi-dot"></i>
-            <i class="bi bi-dot"></i>
-          </p>
-          <ul>
-            {petShops.map((petShelter, index) => (
-              <div key={index}>
-                <ShopCard  onClick={onClick} {...petShelter} />
-                <Divider />
-              </div>
-            ))}
-          </ul>
-        </div>
+        )}
+        {isDetails && cataloge && <PetCataloge closeCataloge={closeCataloge} />}
+        <MapPanel petShops={petShops} selected={details?details.id:-1} onClick={onClick} />
       </div>
-      <i
-        class="bi bi-geo-alt-fill location-btn"
+      <i 
+        className="bi bi-geo-alt-fill location-btn"
         onClick={() => onClick(offsetCenter, 14)}
       ></i>
     </div>

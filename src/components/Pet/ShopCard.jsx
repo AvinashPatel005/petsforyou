@@ -1,6 +1,5 @@
 import React from "react";
-import "./index.css";
-import Rating from "../Rating";
+import Rating from "./Rating";
 function ShopCard({
   id,
   name,
@@ -8,7 +7,8 @@ function ShopCard({
   location,
   hours,
   contact,
-  onClick
+  onClick,
+  selected
 }) {
   const day = new Date().getDay();
   const iconMap = {
@@ -20,7 +20,7 @@ function ShopCard({
     navigator.clipboard.writeText(text);
   }
   return (
-    <div className="petshop-card" onClick={()=>onClick([location.latitude,location.longitude],16,id)}>
+    <div className={`petshop-card ${selected===id?"selected":""}`} onClick={()=>onClick([location.latitude,location.longitude],16,id)}>
       <div className="petshop-info">
         <h3 className="petshop-name">{name}</h3>
         <div className="rating-card">
